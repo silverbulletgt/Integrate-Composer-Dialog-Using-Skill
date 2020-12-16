@@ -7,6 +7,8 @@ using Integrate_Composer_Dialog_Using_Skill.Services;
 using Luis;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
+using Microsoft.Bot.Builder.Dialogs.Adaptive;
+using Microsoft.Bot.Builder.Dialogs.Declarative.Resources;
 using Microsoft.Bot.Schema;
 using Microsoft.Bot.Solutions.Responses;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,7 +26,8 @@ namespace Integrate_Composer_Dialog_Using_Skill.Dialogs
         private readonly LocaleTemplateManager _templateEngine;
 
         public MainDialog(
-            IServiceProvider serviceProvider)
+            IServiceProvider serviceProvider,
+            ResourceExplorer resourceExplorer)
             : base(nameof(MainDialog))
         {
             _services = serviceProvider.GetService<BotServices>();
@@ -38,6 +41,13 @@ namespace Integrate_Composer_Dialog_Using_Skill.Dialogs
             AddDialog(new WaterfallDialog(nameof(MainDialog), steps));
             AddDialog(new TextPrompt(nameof(TextPrompt)));
             InitialDialogId = nameof(MainDialog);
+
+            //from instructions: https://microsoft.github.io/botframework-solutions/skills/handbook/experimental-add-composer/
+            var dialogResource = resourceExplorer.GetResource("Composer-With-Skill.dialog");
+            var composerDialog = resourceExplorer.LoadType<AdaptiveDialog>(dialogResource);
+
+            // Add the dialog
+            AddDialog(composerDialog);
         }
 
         // Runs when the dialog is started.
@@ -103,13 +113,8 @@ namespace Integrate_Composer_Dialog_Using_Skill.Dialogs
                 return await stepContext.NextAsync(cancellationToken: cancellationToken);
             }
 
-            // If bot is in local mode, prompt with intro or continuation message
-            var promptOptions = new PromptOptions
-            {
-                Prompt = stepContext.Options as Activity ?? _templateEngine.GenerateActivityForLocale("FirstPromptMessage")
-            };
-
-            return await stepContext.PromptAsync(nameof(TextPrompt), promptOptions, cancellationToken);
+            object adaptiveOptions = null;
+            return await stepContext.BeginDialogAsync("Composer-With-Skill", adaptiveOptions, cancellationToken);
         }
 
         private async Task LogUserOutAsync(DialogContext dc, CancellationToken cancellationToken)

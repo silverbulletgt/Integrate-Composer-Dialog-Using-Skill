@@ -3,6 +3,8 @@
 
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
+using Microsoft.Bot.Builder.Dialogs.Adaptive;
+using Microsoft.Bot.Builder.Dialogs.Declarative.Resources;
 using Microsoft.Bot.Connector;
 using Microsoft.Bot.Schema;
 using Microsoft.Bot.Solutions.Responses;
@@ -23,6 +25,10 @@ namespace Integrate_Composer_Dialog_Using_Skill.Bots
         private readonly IStatePropertyAccessor<DialogState> _dialogStateAccessor;
         private readonly LocaleTemplateManager _templateEngine;
 
+        //from Instructions: https://microsoft.github.io/botframework-solutions/skills/handbook/experimental-add-composer/
+        protected readonly DialogManager _dialogManager;
+        protected readonly ResourceExplorer _resourceExplorer;
+
         public DefaultActivityHandler(IServiceProvider serviceProvider, T dialog)
         {
             _dialog = dialog;
@@ -31,11 +37,19 @@ namespace Integrate_Composer_Dialog_Using_Skill.Bots
             _userState = serviceProvider.GetService<UserState>();
             _dialogStateAccessor = _conversationState.CreateProperty<DialogState>(nameof(DialogState));
             _templateEngine = serviceProvider.GetService<LocaleTemplateManager>();
+
+            //from Instructions: https://microsoft.github.io/botframework-solutions/skills/handbook/experimental-add-composer/
+            _resourceExplorer = serviceProvider.GetService<ResourceExplorer>();
+            _dialogManager = new DialogManager(dialog);
+            _dialogManager.UseResourceExplorer(_resourceExplorer);
+            _dialogManager.UseLanguageGeneration();
         }
 
         public override async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken = default)
         {
-            await base.OnTurnAsync(turnContext, cancellationToken);
+            //from Instructions: https://microsoft.github.io/botframework-solutions/skills/handbook/experimental-add-composer/
+            //await base.OnTurnAsync(turnContext, cancellationToken);
+            await _dialogManager.OnTurnAsync(turnContext, cancellationToken: cancellationToken);
 
             // Save any state changes that might have occured during the turn.
             await _conversationState.SaveChangesAsync(turnContext, false, cancellationToken);

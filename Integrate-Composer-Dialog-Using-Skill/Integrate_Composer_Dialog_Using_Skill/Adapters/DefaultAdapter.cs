@@ -12,6 +12,7 @@ using Microsoft.Bot.Connector.Authentication;
 using Microsoft.Bot.Schema;
 using Microsoft.Bot.Solutions.Middleware;
 using Microsoft.Bot.Solutions.Responses;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
@@ -34,7 +35,10 @@ namespace Integrate_Composer_Dialog_Using_Skill.Adapters
             ConversationState conversationState,
             TelemetryInitializerMiddleware telemetryMiddleware,
             IBotTelemetryClient telemetryClient,
-            ILogger<BotFrameworkHttpAdapter> logger)
+            ILogger<BotFrameworkHttpAdapter> logger,
+            IStorage storage,
+            UserState userState,
+            IConfiguration configuration)
             : base(credentialProvider, authConfig, channelProvider, logger: logger)
         {
             _conversationState = conversationState ?? throw new ArgumentNullException(nameof(conversationState));
@@ -54,6 +58,12 @@ namespace Integrate_Composer_Dialog_Using_Skill.Adapters
             Use(new SetLocaleMiddleware(settings.DefaultLocale ?? "en-us"));
             Use(new EventDebuggerMiddleware());
             Use(new SetSpeakMiddleware());
+
+            //from instructions: https://microsoft.github.io/botframework-solutions/skills/handbook/experimental-add-composer/
+            this.Use(new RegisterClassMiddleware<IConfiguration>(configuration));
+            this.UseStorage(storage);
+            this.UseBotState(userState);
+            this.UseBotState(conversationState);
         }
 
         private async Task HandleTurnErrorAsync(ITurnContext turnContext, Exception exception)

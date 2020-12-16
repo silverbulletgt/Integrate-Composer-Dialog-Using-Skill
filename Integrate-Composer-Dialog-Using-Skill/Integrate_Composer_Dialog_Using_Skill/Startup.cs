@@ -11,9 +11,14 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Bot.Builder;
+using Microsoft.Bot.Builder.AI.Luis;
 using Microsoft.Bot.Builder.ApplicationInsights;
 using Microsoft.Bot.Builder.Azure;
 using Microsoft.Bot.Builder.BotFramework;
+using Microsoft.Bot.Builder.Dialogs;
+using Microsoft.Bot.Builder.Dialogs.Adaptive;
+using Microsoft.Bot.Builder.Dialogs.Declarative;
+using Microsoft.Bot.Builder.Dialogs.Declarative.Resources;
 using Microsoft.Bot.Builder.Integration.ApplicationInsights.Core;
 using Microsoft.Bot.Builder.Integration.AspNet.Core;
 using Microsoft.Bot.Connector.Authentication;
@@ -38,12 +43,37 @@ namespace Integrate_Composer_Dialog_Using_Skill
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddJsonFile("cognitivemodels.json", optional: true)
                 .AddJsonFile($"cognitivemodels.{env.EnvironmentName}.json", optional: true)
+                //from instructions: https://microsoft.github.io/botframework-solutions/skills/handbook/experimental-add-composer/
+                .AddJsonFile($"ComposerDialogs\\settings\\appsettings.json", optional: true)
                 .AddEnvironmentVariables();
 
             Configuration = builder.Build();
+
+            //from instructions: https://microsoft.github.io/botframework-solutions/skills/handbook/experimental-add-composer/
+            this.HostingEnvironment = env;
         }
 
         public IConfiguration Configuration { get; }
+        //from instructions: https://microsoft.github.io/botframework-solutions/skills/handbook/experimental-add-composer/
+        private IWebHostEnvironment HostingEnvironment { get; set; }
+
+        /// <summary>
+        /// from instructions: https://microsoft.github.io/botframework-solutions/skills/handbook/experimental-add-composer/
+        /// </summary>
+        /// <param name="services"></param>
+        private void ConfigureComposerDialogServices(IServiceCollection services)
+        {
+            // Configure Adaptive           
+            ComponentRegistration.Add(new DialogsComponentRegistration());
+            ComponentRegistration.Add(new AdaptiveComponentRegistration());
+            ComponentRegistration.Add(new DeclarativeComponentRegistration());
+            ComponentRegistration.Add(new LanguageGenerationComponentRegistration());
+            ComponentRegistration.Add(new LuisComponentRegistration());
+
+            // Resource explorer to manage declarative resources for adaptive dialog
+            var resourceExplorer = new ResourceExplorer().LoadProject(this.HostingEnvironment.ContentRootPath);
+            services.AddSingleton(resourceExplorer);
+        }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -124,6 +154,8 @@ namespace Integrate_Composer_Dialog_Using_Skill
 
             // Configure bot
             services.AddTransient<IBot, DefaultActivityHandler<MainDialog>>();
+
+            ConfigureComposerDialogServices(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
