@@ -26,6 +26,37 @@
           "activity": "${SendActivity_VVmJte()}"
         }
       ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "nEVRQ0",
+        "name": "Skill"
+      },
+      "intent": "Skill",
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "3RXa0I"
+          },
+          "activity": "${SendActivity_3RXa0I()}"
+        },
+        {
+          "$kind": "Microsoft.BeginSkill",
+          "$designer": {
+            "id": "tBIrjU"
+          },
+          "activityProcessed": true,
+          "botId": "=settings.MicrosoftAppId",
+          "skillHostEndpoint": "=settings.skillHostEndpoint",
+          "connectionName": "=settings.connectionName",
+          "allowInterruptions": true,
+          "skillEndpoint": "=settings.skill['integrateComposerDialogUsingSkill'].endpointUrl",
+          "skillAppId": "=settings.skill['integrateComposerDialogUsingSkill'].msAppId",
+          "activity": "${BeginSkill_Activity_tBIrjU()}"
+        }
+      ]
     }
   ],
   "$schema": "https://raw.githubusercontent.com/microsoft/BotFramework-Composer/stable/Composer/packages/server/schemas/sdk.schema",
@@ -37,6 +68,10 @@
       {
         "intent": "Greetings",
         "pattern": "Greeting"
+      },
+      {
+        "intent": "Skill",
+        "pattern": "Skill"
       }
     ]
   }

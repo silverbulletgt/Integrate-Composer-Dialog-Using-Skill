@@ -1,5 +1,11 @@
 {
   "$schema": "https://raw.githubusercontent.com/microsoft/BotFramework-Composer/main/Composer/packages/server/schemas/botproject.schema",
   "name": "Composer-With-Skill",
-  "skills": {}
+  "skills": {
+    "integrateComposerDialogUsingSkill": {
+      "manifest": "http://localhost:3978/manifest/echobotskill-manifest-1.0.json",
+      "remote": true,
+      "endpointName": "production"
+    }
+  }
 }
