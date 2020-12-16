@@ -1,0 +1,43 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "$designer": {
+      "name": "Composer-With-Skill",
+      "description": "",
+      "id": "ktR3rl"
+    }
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "Wx77Jf",
+        "name": "Greetings"
+      },
+      "intent": "Greetings",
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "VVmJte"
+          },
+          "activity": "${SendActivity_VVmJte()}"
+        }
+      ]
+    }
+  ],
+  "$schema": "https://raw.githubusercontent.com/microsoft/BotFramework-Composer/stable/Composer/packages/server/schemas/sdk.schema",
+  "generator": "Composer-With-Skill.lg",
+  "id": "Composer-With-Skill",
+  "recognizer": {
+    "$kind": "Microsoft.RegexRecognizer",
+    "intents": [
+      {
+        "intent": "Greetings",
+        "pattern": "Greeting"
+      }
+    ]
+  }
+}

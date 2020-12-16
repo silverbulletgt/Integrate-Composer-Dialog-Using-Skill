@@ -1,0 +1,9 @@
+[import](common.lg)
+
+# SendActivity_Welcome
+- ${WelcomeUser()}
+
+# SendActivity_VVmJte()
+- Hello, I have recognized that you said greeting
+# SendActivity_hs6dsb()
+- I will call the skill now
