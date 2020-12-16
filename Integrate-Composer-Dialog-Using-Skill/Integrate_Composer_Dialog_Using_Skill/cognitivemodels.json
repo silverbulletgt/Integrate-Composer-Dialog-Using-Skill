@@ -2,26 +2,26 @@
   "cognitiveModels": {
     "en-us": {
       "languageModels": [
-        {
-          "id": "General",
-          "name": "",
-          "appId": "",
-          "version": "0.1",
-          "region": "",
-          "authoringKey": "",
-          "authoringRegion": "",
-          "subscriptionKey": ""
-        },
-        {
-          "id": "Integrate_Composer_Dialog_Using_Skill",
-          "name": "",
-          "appId": "",
-          "version": "0.1",
-          "region": "",
-          "authoringKey": "",
-          "authoringRegion": "",
-          "subscriptionKey": ""
-        }
+        //{
+        //  "id": "General",
+        //  "name": "",
+        //  "appId": "",
+        //  "version": "0.1",
+        //  "region": "",
+        //  "authoringKey": "",
+        //  "authoringRegion": "",
+        //  "subscriptionKey": ""
+        //},
+        //{
+        //  "id": "Integrate_Composer_Dialog_Using_Skill",
+        //  "name": "",
+        //  "appId": "",
+        //  "version": "0.1",
+        //  "region": "",
+        //  "authoringKey": "",
+        //  "authoringRegion": "",
+        //  "subscriptionKey": ""
+        //}
       ]
     }
   },

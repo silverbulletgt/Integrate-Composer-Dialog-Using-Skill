@@ -13,39 +13,39 @@ namespace Integrate_Composer_Dialog_Using_Skill.Tests
     [TestClass]
     public class SkillModeTests : SkillTestBase
     {
-        [TestMethod]
-        public async Task Test_Sample_Action()
-        {
-            await GetSkillTestFlow()
-               .Send(new Activity(type: ActivityTypes.Event, name: "SampleAction"))
-               .AssertReplyOneOf(GetTemplates("NamePromptText"))
-               .Send(SampleDialogUtterances.NamePromptResponse)
-               .AssertReplyOneOf(GetTemplates("HaveNameMessageText", new { Name = SampleDialogUtterances.NamePromptResponse }))
-               .AssertReply((activity) =>
-               {
-                   var a = (Activity)activity;
-                   Assert.AreEqual(ActivityTypes.EndOfConversation, a.Type);
-                   Assert.AreEqual(typeof(SampleActionOutput), a.Value.GetType());
-               })
-               .StartTestAsync();
-        }
+        //[TestMethod]
+        //public async Task Test_Sample_Action()
+        //{
+        //    await GetSkillTestFlow()
+        //       .Send(new Activity(type: ActivityTypes.Event, name: "SampleAction"))
+        //       .AssertReplyOneOf(GetTemplates("NamePromptText"))
+        //       .Send(SampleDialogUtterances.NamePromptResponse)
+        //       .AssertReplyOneOf(GetTemplates("HaveNameMessageText", new { Name = SampleDialogUtterances.NamePromptResponse }))
+        //       .AssertReply((activity) =>
+        //       {
+        //           var a = (Activity)activity;
+        //           Assert.AreEqual(ActivityTypes.EndOfConversation, a.Type);
+        //           Assert.AreEqual(typeof(SampleActionOutput), a.Value.GetType());
+        //       })
+        //       .StartTestAsync();
+        //}
 
-        [TestMethod]
-        public async Task Test_Sample_Action_w_Input()
-        {
-            var actionInput = new SampleActionInput() { Name = "test" };
+        //[TestMethod]
+        //public async Task Test_Sample_Action_w_Input()
+        //{
+        //    var actionInput = new SampleActionInput() { Name = "test" };
 
-            await GetSkillTestFlow()
-               .Send(new Activity(type: ActivityTypes.Event, name: "SampleAction", value: JObject.FromObject(actionInput)))
-               .AssertReplyOneOf(GetTemplates("HaveNameMessageText", new { actionInput.Name }))
-               .AssertReply((activity) =>
-               {
-                   var a = (Activity)activity;
-                   Assert.AreEqual(ActivityTypes.EndOfConversation, a.Type);
-                   Assert.AreEqual(typeof(SampleActionOutput), a.Value.GetType());
-               })
-               .StartTestAsync();
-        }
+        //    await GetSkillTestFlow()
+        //       .Send(new Activity(type: ActivityTypes.Event, name: "SampleAction", value: JObject.FromObject(actionInput)))
+        //       .AssertReplyOneOf(GetTemplates("HaveNameMessageText", new { actionInput.Name }))
+        //       .AssertReply((activity) =>
+        //       {
+        //           var a = (Activity)activity;
+        //           Assert.AreEqual(ActivityTypes.EndOfConversation, a.Type);
+        //           Assert.AreEqual(typeof(SampleActionOutput), a.Value.GetType());
+        //       })
+        //       .StartTestAsync();
+        //}
 
         [TestMethod]
         public async Task Test_Sample_Dialog()

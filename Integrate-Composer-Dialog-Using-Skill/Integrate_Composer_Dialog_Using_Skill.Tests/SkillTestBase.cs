@@ -82,8 +82,6 @@ namespace Integrate_Composer_Dialog_Using_Skill.Tests
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-us");
             Services.AddSingleton(TemplateEngine);
             Services.AddTransient<MainDialog>();
-            Services.AddTransient<SampleDialog>();
-            Services.AddTransient<SampleAction>();
             Services.AddSingleton<TestAdapter, DefaultTestAdapter>();
             Services.AddTransient<IBot, DefaultActivityHandler<MainDialog>>();
         }

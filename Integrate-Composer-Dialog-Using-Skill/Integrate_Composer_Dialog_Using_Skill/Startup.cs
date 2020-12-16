@@ -117,8 +117,6 @@ namespace Integrate_Composer_Dialog_Using_Skill
             services.AddSingleton(new LocaleTemplateManager(localizedTemplates, settings.DefaultLocale ?? "en-us"));
 
             // Register dialogs
-            services.AddTransient<SampleDialog>();
-            services.AddTransient<SampleAction>();
             services.AddTransient<MainDialog>();
 
             // Configure adapters
