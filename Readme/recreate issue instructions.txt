@@ -1,0 +1,21 @@
+The final project can be found here:
+https://github.com/silverbulletgt/Integrate-Composer-Dialog-Using-Skill
+ 
+To recreate the issue:
+Prerequisites
+•Install Bot Emulator: https://github.com/Microsoft/BotFramework-Emulator/blob/master/README.md
+ 
+Open the solution file in visual studio
+https://github.com/silverbulletgt/Integrate-Composer-Dialog-Using-Skill/blob/master/Integrate-Composer-Dialog-Using-Skill.sln
+ 
+Put a breakpoint on line 72 of DefaultAdapter.cs - this is where the error can be seen
+ 
+Start debugging the project
+Open Bot Emulator
+Connect to the bot: http://localhost:3978/api/messages
+Type "Greeting"
+Bot should respond with "Hello, I have recognized that you said greeting"
+Type "Skill"
+The breakpoint on line 72 of DefaultAdapter.cs should trigger giving details of the error
+ 
+Error & stack trace can be found here: https://github.com/silverbulletgt/Integrate-Composer-Dialog-Using-Skill/blob/master/Readme/error%20stack%20trace.txt
