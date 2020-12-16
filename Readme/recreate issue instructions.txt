@@ -6,7 +6,7 @@ Prerequisites
 •Install Bot Emulator: https://github.com/Microsoft/BotFramework-Emulator/blob/master/README.md
  
 Open the solution file in visual studio
-https://github.com/silverbulletgt/Integrate-Composer-Dialog-Using-Skill/blob/master/Integrate-Composer-Dialog-Using-Skill.sln
+Integrate-Composer-Dialog-Using-Skill.sln
  
 Put a breakpoint on line 72 of DefaultAdapter.cs - this is where the error can be seen
  
