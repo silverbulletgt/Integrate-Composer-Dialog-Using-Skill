@@ -19,3 +19,15 @@ Type "Skill"
 The breakpoint on line 72 of DefaultAdapter.cs should trigger giving details of the error
  
 Error & stack trace can be found here: https://github.com/silverbulletgt/Integrate-Composer-Dialog-Using-Skill/blob/master/Readme/error%20stack%20trace.txt
+
+Update:
+I was able to download the Bot.Builder SDK, compile & connect to the project to be able to debug the issue.
+Determined that the issue was in Microsoft.Bot.Builder.Dialogs.Adaptive.Actions.BeginSkill.cs - Line 157
+
+DialogOptions.ConversationIdFactory = dc.Context.TurnState.Get<SkillConversationIdFactoryBase>() ?? throw new NullReferenceException("Unable to locate SkillConversationIdFactoryBase in HostContext");
+
+Determined that if I add dependency injection of SkillConversationIdFactoryBase & BotFrameworkClient I am able to by pass the issue.
+
+After these changes the skill is called indicated by breakpoints in EchoBot.cs being hit.
+
+The emulator does not display the expected text when the skill is called.  I wonder if there is now an issue with the callback URL not getting back to the emulator.
