@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights" Version="2.16.0" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.16.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.0" />
     <PackageReference Include="Microsoft.Azure.CognitiveServices.ContentModerator" Version="2.0.0" />
     <PackageReference Include="Microsoft.Azure.CognitiveServices.Language" Version="1.0.1-preview" />
@@ -82,6 +83,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="AdaptiveExpressions">
+      <HintPath>..\..\..\botbuilder-dotnet\libraries\AdaptiveExpressions\bin\Debug\netstandard2.0\AdaptiveExpressions.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Bot.Builder">
       <HintPath>..\..\..\botbuilder-dotnet\libraries\Microsoft.Bot.Builder\bin\Debug\netstandard2.0\Microsoft.Bot.Builder.dll</HintPath>
     </Reference>
