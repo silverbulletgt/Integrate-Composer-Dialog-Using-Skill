@@ -78,7 +78,7 @@ namespace Integrate_Composer_Dialog_Using_Skill
             var resourceExplorer = new ResourceExplorer().LoadProject(this.HostingEnvironment.ContentRootPath);
             services.AddSingleton(resourceExplorer);
 
-            services.AddSingleton<SkillConversationIdFactoryBase, SkillConversationIdFactory>();
+            services.AddSingleton(typeof(SkillConversationIdFactoryBase), typeof(SkillConversationIdFactory));
             //services.AddSingleton<ChannelServiceHandler, SkillHandler>();
 
             //to support the needed parameters on the BotFrameworkClient constructor
