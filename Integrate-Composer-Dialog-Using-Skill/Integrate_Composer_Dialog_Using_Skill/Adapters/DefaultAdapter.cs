@@ -24,14 +24,14 @@ namespace Integrate_Composer_Dialog_Using_Skill.Adapters
         private readonly ConversationState _conversationState;
         private readonly ILogger _logger;
         private readonly IBotTelemetryClient _telemetryClient;
-        private readonly LocaleTemplateManager _templateEngine;
+        //private readonly LocaleTemplateManager _templateEngine;
 
         public DefaultAdapter(
             BotSettings settings,
             ICredentialProvider credentialProvider,
             IChannelProvider channelProvider,
             AuthenticationConfiguration authConfig,
-            LocaleTemplateManager templateEngine,
+            //LocaleTemplateManager templateEngine,
             ConversationState conversationState,
             TelemetryInitializerMiddleware telemetryMiddleware,
             IBotTelemetryClient telemetryClient,
@@ -43,7 +43,7 @@ namespace Integrate_Composer_Dialog_Using_Skill.Adapters
         {
             _conversationState = conversationState ?? throw new ArgumentNullException(nameof(conversationState));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-            _templateEngine = templateEngine ?? throw new ArgumentNullException(nameof(templateEngine));
+            //_templateEngine = templateEngine ?? throw new ArgumentNullException(nameof(templateEngine));
             _telemetryClient = telemetryClient ?? throw new ArgumentNullException(nameof(telemetryClient));
 
             OnTurnError = HandleTurnErrorAsync;

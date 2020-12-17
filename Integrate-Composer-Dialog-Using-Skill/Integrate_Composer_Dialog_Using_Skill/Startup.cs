@@ -144,7 +144,8 @@ namespace Integrate_Composer_Dialog_Using_Skill
                 localizedTemplates.Add(locale, localeTemplateFile);
             }
 
-            services.AddSingleton(new LocaleTemplateManager(localizedTemplates, settings.DefaultLocale ?? "en-us"));
+            var language = new LocaleTemplateManager(localizedTemplates, settings.DefaultLocale ?? "en-us");
+            //services.AddSingleton(language);
 
             // Register dialogs
             services.AddTransient<MainDialog>();
