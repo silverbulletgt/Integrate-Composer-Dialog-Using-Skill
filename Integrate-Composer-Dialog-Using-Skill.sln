@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Integrate_Composer_Dialog_Using_Skill", "Integrate-Composer-Dialog-Using-Skill\Integrate_Composer_Dialog_Using_Skill\Integrate_Composer_Dialog_Using_Skill.csproj", "{AEC38915-11E9-46C8-9839-FB47192363C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Integrate_Composer_Dialog_Using_Skill", "Integrate-Composer-Dialog-Using-Skill\Integrate_Composer_Dialog_Using_Skill\Integrate_Composer_Dialog_Using_Skill.csproj", "{AEC38915-11E9-46C8-9839-FB47192363C3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Integrate_Composer_Dialog_Using_Skill.Tests", "Integrate-Composer-Dialog-Using-Skill\Integrate_Composer_Dialog_Using_Skill.Tests\Integrate_Composer_Dialog_Using_Skill.Tests.csproj", "{E250A916-9E76-4D49-BFD8-7BC73ED3758A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Bot.Builder.Integration.AspNet.Core", "..\botbuilder-dotnet\libraries\integration\Microsoft.Bot.Builder.Integration.AspNet.Core\Microsoft.Bot.Builder.Integration.AspNet.Core.csproj", "{676F2E38-AE1A-404A-AC99-65B278E87BC1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Bot.Builder.Dialogs.Adaptive", "..\botbuilder-dotnet\libraries\Microsoft.Bot.Builder.Dialogs.Adaptive\Microsoft.Bot.Builder.Dialogs.Adaptive.csproj", "{8F3B9F2E-0F23-4935-A421-32FE4107FEDB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{E250A916-9E76-4D49-BFD8-7BC73ED3758A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E250A916-9E76-4D49-BFD8-7BC73ED3758A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E250A916-9E76-4D49-BFD8-7BC73ED3758A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{676F2E38-AE1A-404A-AC99-65B278E87BC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{676F2E38-AE1A-404A-AC99-65B278E87BC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{676F2E38-AE1A-404A-AC99-65B278E87BC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{676F2E38-AE1A-404A-AC99-65B278E87BC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F3B9F2E-0F23-4935-A421-32FE4107FEDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F3B9F2E-0F23-4935-A421-32FE4107FEDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F3B9F2E-0F23-4935-A421-32FE4107FEDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F3B9F2E-0F23-4935-A421-32FE4107FEDB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
