@@ -30,8 +30,6 @@ namespace Integrate_Composer_Dialog_Using_Skill.Bots
         protected readonly DialogManager _dialogManager;
         protected readonly ResourceExplorer _resourceExplorer;
 
-        protected readonly SkillConversationIdFactoryBase _skillConversationFactory;
-
         public DefaultActivityHandler(IServiceProvider serviceProvider, T dialog)
         {
             _dialog = dialog;
@@ -46,8 +44,6 @@ namespace Integrate_Composer_Dialog_Using_Skill.Bots
             _dialogManager = new DialogManager(dialog);
             _dialogManager.UseResourceExplorer(_resourceExplorer);
             _dialogManager.UseLanguageGeneration();
-
-            _skillConversationFactory = serviceProvider.GetService<SkillConversationIdFactoryBase>();
         }
 
         public override async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken = default)
