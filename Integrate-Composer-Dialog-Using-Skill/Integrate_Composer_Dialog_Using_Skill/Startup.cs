@@ -21,15 +21,19 @@ using Microsoft.Bot.Builder.Dialogs.Declarative;
 using Microsoft.Bot.Builder.Dialogs.Declarative.Resources;
 using Microsoft.Bot.Builder.Integration.ApplicationInsights.Core;
 using Microsoft.Bot.Builder.Integration.AspNet.Core;
+using Microsoft.Bot.Builder.Integration.AspNet.Core.Skills;
+using Microsoft.Bot.Builder.Skills;
 using Microsoft.Bot.Connector.Authentication;
 using Microsoft.Bot.Solutions;
 using Microsoft.Bot.Solutions.Responses;
+using Microsoft.Bot.Solutions.Skills;
 using Microsoft.Bot.Solutions.TaskExtensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Collections.Generic;
 using System.IO;
+using System.Net.Http;
 
 namespace Integrate_Composer_Dialog_Using_Skill
 {
@@ -73,6 +77,14 @@ namespace Integrate_Composer_Dialog_Using_Skill
             // Resource explorer to manage declarative resources for adaptive dialog
             var resourceExplorer = new ResourceExplorer().LoadProject(this.HostingEnvironment.ContentRootPath);
             services.AddSingleton(resourceExplorer);
+
+            services.AddSingleton<SkillConversationIdFactoryBase, SkillConversationIdFactory>();
+            //services.AddSingleton<ChannelServiceHandler, SkillHandler>();
+
+            //to support the needed parameters on the BotFrameworkClient constructor
+            services.AddHttpClient<SkillHttpClient>();
+            services.AddSingleton<HttpClient>(new HttpClient());
+            services.AddSingleton<BotFrameworkClient, BotFrameworkHttpClient>();
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
