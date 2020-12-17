@@ -82,7 +82,7 @@ namespace Integrate_Composer_Dialog_Using_Skill
             //services.AddSingleton<ChannelServiceHandler, SkillHandler>();
 
             //to support the needed parameters on the BotFrameworkClient constructor
-            services.AddHttpClient<SkillHttpClient>();
+            //services.AddHttpClient<SkillHttpClient>();
             services.AddSingleton<HttpClient>(new HttpClient());
             services.AddSingleton<BotFrameworkClient, BotFrameworkHttpClient>();
         }
