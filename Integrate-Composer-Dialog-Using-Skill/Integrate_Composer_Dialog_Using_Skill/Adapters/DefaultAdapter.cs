@@ -7,6 +7,7 @@ using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Azure;
 using Microsoft.Bot.Builder.Integration.ApplicationInsights.Core;
 using Microsoft.Bot.Builder.Integration.AspNet.Core;
+using Microsoft.Bot.Builder.Skills;
 using Microsoft.Bot.Builder.TraceExtensions;
 using Microsoft.Bot.Connector.Authentication;
 using Microsoft.Bot.Schema;
@@ -25,6 +26,7 @@ namespace Integrate_Composer_Dialog_Using_Skill.Adapters
         private readonly ILogger _logger;
         private readonly IBotTelemetryClient _telemetryClient;
         private readonly LocaleTemplateManager _templateEngine;
+        private readonly SkillConversationIdFactoryBase _skillConversationIdFactoryBase;
 
         public DefaultAdapter(
             BotSettings settings,
@@ -38,13 +40,16 @@ namespace Integrate_Composer_Dialog_Using_Skill.Adapters
             ILogger<BotFrameworkHttpAdapter> logger,
             IStorage storage,
             UserState userState,
-            IConfiguration configuration)
+            IConfiguration configuration,
+            SkillConversationIdFactoryBase skillConversationIdFactoryBase,
+            BotFrameworkClient botFrameworkClient)
             : base(credentialProvider, authConfig, channelProvider, logger: logger)
         {
             _conversationState = conversationState ?? throw new ArgumentNullException(nameof(conversationState));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _templateEngine = templateEngine ?? throw new ArgumentNullException(nameof(templateEngine));
             _telemetryClient = telemetryClient ?? throw new ArgumentNullException(nameof(telemetryClient));
+            _skillConversationIdFactoryBase = skillConversationIdFactoryBase;
 
             OnTurnError = HandleTurnErrorAsync;
 
@@ -58,6 +63,8 @@ namespace Integrate_Composer_Dialog_Using_Skill.Adapters
             Use(new SetLocaleMiddleware(settings.DefaultLocale ?? "en-us"));
             Use(new EventDebuggerMiddleware());
             Use(new SetSpeakMiddleware());
+            Use(new RegisterClassMiddleware<SkillConversationIdFactoryBase>(_skillConversationIdFactoryBase));
+            Use(new RegisterClassMiddleware<BotFrameworkClient>(botFrameworkClient));
 
             //from instructions: https://microsoft.github.io/botframework-solutions/skills/handbook/experimental-add-composer/
             this.Use(new RegisterClassMiddleware<IConfiguration>(configuration));
