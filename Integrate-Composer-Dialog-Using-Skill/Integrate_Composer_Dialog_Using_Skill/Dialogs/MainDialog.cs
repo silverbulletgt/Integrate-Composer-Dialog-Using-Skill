@@ -114,6 +114,7 @@ namespace Integrate_Composer_Dialog_Using_Skill.Dialogs
             }
 
             object adaptiveOptions = null;
+
             return await stepContext.BeginDialogAsync("Composer-With-Skill", adaptiveOptions, cancellationToken);
         }
 

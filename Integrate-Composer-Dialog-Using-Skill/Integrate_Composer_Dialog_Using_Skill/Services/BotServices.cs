@@ -20,57 +20,57 @@ namespace Integrate_Composer_Dialog_Using_Skill.Services
 
         public BotServices(BotSettings settings, IBotTelemetryClient client)
         {
-            foreach (var pair in settings.CognitiveModels)
-            {
-                var set = new CognitiveModelSet();
-                var language = pair.Key;
-                var config = pair.Value;
+            //foreach (var pair in settings.CognitiveModels)
+            //{
+            //    var set = new CognitiveModelSet();
+            //    var language = pair.Key;
+            //    var config = pair.Value;
 
-                var telemetryClient = client;
+            //    var telemetryClient = client;
 
-                LuisRecognizerOptionsV3 luisOptions;
+            //    LuisRecognizerOptionsV3 luisOptions;
 
-                if (config.DispatchModel != null)
-                {
-                    var dispatchApp = new LuisApplication(config.DispatchModel.AppId, config.DispatchModel.SubscriptionKey, config.DispatchModel.GetEndpoint());
-                    luisOptions = new LuisRecognizerOptionsV3(dispatchApp)
-                    {
-                        TelemetryClient = telemetryClient,
-                        LogPersonalInformation = true,
-                    };
-                    set.DispatchService = new LuisRecognizer(luisOptions);
-                }
+            //    if (config.DispatchModel != null)
+            //    {
+            //        var dispatchApp = new LuisApplication(config.DispatchModel.AppId, config.DispatchModel.SubscriptionKey, config.DispatchModel.GetEndpoint());
+            //        luisOptions = new LuisRecognizerOptionsV3(dispatchApp)
+            //        {
+            //            TelemetryClient = telemetryClient,
+            //            LogPersonalInformation = true,
+            //        };
+            //        set.DispatchService = new LuisRecognizer(luisOptions);
+            //    }
 
-                if (config.LanguageModels != null)
-                {
-                    foreach (var model in config.LanguageModels)
-                    {
-                        var luisApp = new LuisApplication(model.AppId, model.SubscriptionKey, model.GetEndpoint());
-                        luisOptions = new LuisRecognizerOptionsV3(luisApp)
-                        {
-                            TelemetryClient = telemetryClient,
-                            LogPersonalInformation = true,
-                        };
-                        set.LuisServices.Add(model.Id, new LuisRecognizer(luisOptions));
-                    }
-                }
+            //    if (config.LanguageModels != null)
+            //    {
+            //        foreach (var model in config.LanguageModels)
+            //        {
+            //            var luisApp = new LuisApplication(model.AppId, model.SubscriptionKey, model.GetEndpoint());
+            //            luisOptions = new LuisRecognizerOptionsV3(luisApp)
+            //            {
+            //                TelemetryClient = telemetryClient,
+            //                LogPersonalInformation = true,
+            //            };
+            //            set.LuisServices.Add(model.Id, new LuisRecognizer(luisOptions));
+            //        }
+            //    }
 
-                if (config.Knowledgebases != null)
-                {
-                    foreach (var kb in config.Knowledgebases)
-                    {
-                        var qnaEndpoint = new QnAMakerEndpoint()
-                        {
-                            KnowledgeBaseId = kb.KbId,
-                            EndpointKey = kb.EndpointKey,
-                            Host = kb.Hostname,
-                        };
-                        set.QnAConfiguration.Add(kb.Id, qnaEndpoint);
-                    }
-                }
+            //    if (config.Knowledgebases != null)
+            //    {
+            //        foreach (var kb in config.Knowledgebases)
+            //        {
+            //            var qnaEndpoint = new QnAMakerEndpoint()
+            //            {
+            //                KnowledgeBaseId = kb.KbId,
+            //                EndpointKey = kb.EndpointKey,
+            //                Host = kb.Hostname,
+            //            };
+            //            set.QnAConfiguration.Add(kb.Id, qnaEndpoint);
+            //        }
+            //    }
 
-                CognitiveModelSets.Add(language, set);
-            }
+            //    CognitiveModelSets.Add(language, set);
+            //}
         }
 
         public Dictionary<string, CognitiveModelSet> CognitiveModelSets { get; set; } = new Dictionary<string, CognitiveModelSet>();

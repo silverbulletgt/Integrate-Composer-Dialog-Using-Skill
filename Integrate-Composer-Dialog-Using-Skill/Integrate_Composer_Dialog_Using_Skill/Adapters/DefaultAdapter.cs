@@ -55,9 +55,9 @@ namespace Integrate_Composer_Dialog_Using_Skill.Adapters
             //Use(new TranscriptLoggerMiddleware(new AzureBlobTranscriptStore(settings.BlobStorage.ConnectionString, settings.BlobStorage.Container)));
             Use(new TelemetryLoggerMiddleware(telemetryClient, logPersonalInformation: true));
             Use(new ShowTypingMiddleware());
-            Use(new SetLocaleMiddleware(settings.DefaultLocale ?? "en-us"));
-            Use(new EventDebuggerMiddleware());
-            Use(new SetSpeakMiddleware());
+            //Use(new SetLocaleMiddleware(settings.DefaultLocale ?? "en-us"));
+            //Use(new EventDebuggerMiddleware());
+            //Use(new SetSpeakMiddleware());
 
             //from instructions: https://microsoft.github.io/botframework-solutions/skills/handbook/experimental-add-composer/
             this.Use(new RegisterClassMiddleware<IConfiguration>(configuration));
@@ -83,12 +83,12 @@ namespace Integrate_Composer_Dialog_Using_Skill.Adapters
                 _telemetryClient.TrackException(exception);
 
                 // Send a message to the user.
-                await turnContext.SendActivityAsync(_templateEngine.GenerateActivityForLocale("ErrorMessage"));
+                //await turnContext.SendActivityAsync(_templateEngine.GenerateActivityForLocale("ErrorMessage"));
 
                 // Send a trace activity, which will be displayed in the Bot Framework Emulator.
                 // Note: we return the entire exception in the value property to help the developer;
                 // this should not be done in production.
-                await turnContext.TraceActivityAsync("OnTurnError Trace", exception.ToString(), "https://www.botframework.com/schemas/error", "TurnError");
+                //await turnContext.TraceActivityAsync("OnTurnError Trace", exception.ToString(), "https://www.botframework.com/schemas/error", "TurnError");
             }
             catch (Exception ex)
             {
@@ -107,7 +107,7 @@ namespace Integrate_Composer_Dialog_Using_Skill.Adapters
                     var endOfConversation = Activity.CreateEndOfConversationActivity();
                     endOfConversation.Code = "SkillError";
                     endOfConversation.Text = exception.Message;
-                    await turnContext.SendActivityAsync(endOfConversation);
+                    //await turnContext.SendActivityAsync(endOfConversation);
                 }
             }
             catch (Exception ex)

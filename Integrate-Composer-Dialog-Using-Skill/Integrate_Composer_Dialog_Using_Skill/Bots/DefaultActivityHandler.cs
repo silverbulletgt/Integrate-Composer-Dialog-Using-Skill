@@ -58,7 +58,7 @@ namespace Integrate_Composer_Dialog_Using_Skill.Bots
 
         protected override async Task OnMembersAddedAsync(IList<ChannelAccount> membersAdded, ITurnContext<IConversationUpdateActivity> turnContext, CancellationToken cancellationToken)
         {
-            await turnContext.SendActivityAsync(_templateEngine.GenerateActivityForLocale("IntroMessage"), cancellationToken);
+            //await turnContext.SendActivityAsync(_templateEngine.GenerateActivityForLocale("IntroMessage"), cancellationToken);
             await _dialog.RunAsync(turnContext, _dialogStateAccessor, cancellationToken);
         }
 
