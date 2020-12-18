@@ -79,7 +79,10 @@ namespace Integrate_Composer_Dialog_Using_Skill
             services.AddSingleton(resourceExplorer);
 
             services.AddSingleton(typeof(SkillConversationIdFactoryBase), typeof(SkillConversationIdFactory));
-            //services.AddSingleton<ChannelServiceHandler, SkillHandler>();
+            //to support SkillController
+            //from: https://github.com/microsoft/botbuilder-dotnet/blob/main/tests/Microsoft.Bot.Builder.TestBot.Json/Startup.cs
+            services.AddSingleton<ChannelServiceHandler, SkillHandler>();
+            services.AddSingleton<BotAdapter>(sp => (BotFrameworkHttpAdapter)sp.GetService<IBotFrameworkHttpAdapter>());
 
             //to support the needed parameters on the BotFrameworkClient constructor
             //services.AddHttpClient<SkillHttpClient>();
