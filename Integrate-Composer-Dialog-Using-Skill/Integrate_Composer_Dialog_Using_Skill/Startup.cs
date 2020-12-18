@@ -93,6 +93,13 @@ namespace Integrate_Composer_Dialog_Using_Skill
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //adding this because when IConfiguration is instansiated through dependency injection
+            //it was not retrieving an object which was configured as it should be from the constructor of this class
+            //it seemed to be defaulting back to standard setup
+            //this was preventing ComposerDialogs/settings/appsettings.json from being available
+            //https://stackoverflow.com/questions/65363853/bot-framework-v4-value-cannot-be-null-parameter-uristring
+            services.AddSingleton<IConfiguration>(Configuration);
+
             // Configure MVC
             services.AddControllers().AddNewtonsoftJson();
 
