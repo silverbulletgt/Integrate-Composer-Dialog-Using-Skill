@@ -86,6 +86,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\botbuilder-dotnet\libraries\integration\Microsoft.Bot.Builder.Integration.AspNet.Core\Microsoft.Bot.Builder.Integration.AspNet.Core.csproj" />
     <ProjectReference Include="..\..\..\botbuilder-dotnet\libraries\Microsoft.Bot.Builder.Dialogs.Adaptive\Microsoft.Bot.Builder.Dialogs.Adaptive.csproj" />
+    <ProjectReference Include="..\..\..\botbuilder-dotnet\libraries\Microsoft.Bot.Connector\Microsoft.Bot.Connector.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -118,9 +119,6 @@
     </Reference>
     <Reference Include="Microsoft.Bot.Builder.LanguageGeneration">
       <HintPath>..\..\..\botbuilder-dotnet\libraries\Microsoft.Bot.Builder.LanguageGeneration\bin\Debug\netstandard2.0\Microsoft.Bot.Builder.LanguageGeneration.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Bot.Connector">
-      <HintPath>..\..\..\botbuilder-dotnet\libraries\Microsoft.Bot.Builder\bin\Debug\netstandard2.0\Microsoft.Bot.Connector.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Bot.Schema">
       <HintPath>..\..\..\botbuilder-dotnet\libraries\Microsoft.Bot.Builder\bin\Debug\netstandard2.0\Microsoft.Bot.Schema.dll</HintPath>
