@@ -49,11 +49,11 @@
           },
           "activityProcessed": true,
           "botId": "=settings.MicrosoftAppId",
-          "skillHostEndpoint": "http://localhost:3978/api/skills",
+          "skillHostEndpoint": "=settings.skillHostEndpoint",
           "connectionName": "=settings.connectionName",
           "allowInterruptions": true,
-          "skillEndpoint": "http://localhost:3978/api/echo/messages",
-          "skillAppId": "00000000-0000-0000-0000-000000000000",
+          "skillEndpoint": "=settings.skill['integrateComposerDialogUsingSkill'].endpointUrl",
+          "skillAppId": "=settings.skill['integrateComposerDialogUsingSkill'].msAppId",
           "activity": "${BeginSkill_Activity_tBIrjU()}"
         },
         {
