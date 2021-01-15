@@ -1,0 +1,85 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "$designer": {
+      "name": "Composer-With-Skill",
+      "description": "",
+      "id": "ktR3rl"
+    }
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "Wx77Jf",
+        "name": "Greetings"
+      },
+      "intent": "Greetings",
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "VVmJte"
+          },
+          "activity": "${SendActivity_VVmJte()}"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "nEVRQ0",
+        "name": "Skill"
+      },
+      "intent": "Skill",
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "3RXa0I"
+          },
+          "activity": "${SendActivity_3RXa0I()}"
+        },
+        {
+          "$kind": "Microsoft.BeginSkill",
+          "$designer": {
+            "id": "tBIrjU"
+          },
+          "activityProcessed": true,
+          "botId": "=settings.MicrosoftAppId",
+          "skillHostEndpoint": "http://localhost:3978/api/skills",
+          "connectionName": "=settings.connectionName",
+          "allowInterruptions": true,
+          "skillEndpoint": "http://localhost:3978/api/echo/messages",
+          "skillAppId": "00000000-0000-0000-0000-000000000000",
+          "activity": "${BeginSkill_Activity_tBIrjU()}"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "ZBSjja"
+          },
+          "activity": "${SendActivity_ZBSjja()}"
+        }
+      ]
+    }
+  ],
+  "$schema": "https://raw.githubusercontent.com/microsoft/BotFramework-Composer/stable/Composer/packages/server/schemas/sdk.schema",
+  "generator": "Composer-With-Skill.lg",
+  "id": "Composer-With-Skill",
+  "recognizer": {
+    "$kind": "Microsoft.RegexRecognizer",
+    "intents": [
+      {
+        "intent": "Greetings",
+        "pattern": "Greeting"
+      },
+      {
+        "intent": "Skill",
+        "pattern": "Skill"
+      }
+    ]
+  }
+}

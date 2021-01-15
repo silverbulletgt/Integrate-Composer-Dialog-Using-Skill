@@ -1,0 +1,15 @@
+[import](common.lg)
+
+# SendActivity_Welcome
+- ${WelcomeUser()}
+
+# SendActivity_VVmJte()
+- Hello, I have recognized that you said greeting
+# SendActivity_hs6dsb()
+- I will call the skill now
+# SendActivity_3RXa0I()
+- Will call the skill now
+# BeginSkill_Activity_tBIrjU()
+- ${turn.activity.text}
+# SendActivity_ZBSjja()
+- Finished Calling Skill
