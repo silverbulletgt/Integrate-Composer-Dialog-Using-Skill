@@ -14,14 +14,7 @@ namespace Microsoft.BotFramework.Composer.Core
         public static IConfigurationBuilder UseBotPathConverter(this IConfigurationBuilder builder, bool isDevelopment = true)
         {
             var settings = new Dictionary<string, string>();
-            if (isDevelopment)
-            {
-                settings["bot"] = "../../";
-            }
-            else
-            {
-                settings["bot"] = "ComposerDialogs";
-            }
+            settings["bot"] = "ComposerDialogs";
             builder.AddInMemoryCollection(settings);
             return builder;
         }
