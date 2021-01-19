@@ -17,10 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Integrate_Composer_Dialog_Using_Skill\Integrate_Composer_Dialog_Using_Skill.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Update="Utterances\GeneralUtterances.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

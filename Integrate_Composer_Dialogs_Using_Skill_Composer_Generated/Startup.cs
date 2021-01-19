@@ -4,6 +4,7 @@
 using System;
 using System.IO;
 using Integrate_Composer_Dialogs_Using_Skill_Composer_Generated.Authorization;
+using Integrate_Composer_Dialogs_Using_Skill_Composer_Generated.State;
 using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -185,6 +186,7 @@ namespace Integrate_Composer_Dialogs_Using_Skill_Composer_Generated
             var conversationState = new ConversationState(storage);
             services.AddSingleton(userState);
             services.AddSingleton(conversationState);
+            services.AddTransient<StateService>();
 
             // Configure bot loading path
             var botDir = settings.Bot;

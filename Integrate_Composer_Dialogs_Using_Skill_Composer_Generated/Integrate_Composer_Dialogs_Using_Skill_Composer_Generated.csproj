@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>baed5ace-f994-44fc-8298-99cb09650422</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,5 +22,13 @@
   <ItemGroup>
     <ProjectReference Include="..\Microsoft.BotFramework.Composer.Core\Microsoft.BotFramework.Composer.Core.csproj" />
   </ItemGroup>
-
+  <ItemGroup>
+    <!--Removing first because without this was causing a compile error about duplicate files.  Since some of the files were set to content by default
+    I don't want to manually change the value of each file because in the future there could be more files & we don't want to need to do this manually when that occurs -->
+    <Content Remove="ComposerDialogs\**" />
+    <!--Copy the entire contents of the ComposerDialogs to the output directory - these are needed for the adaptive dialogs to work -->
+    <Content Include="ComposerDialogs/**" Exclude="bin/**">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 </Project>

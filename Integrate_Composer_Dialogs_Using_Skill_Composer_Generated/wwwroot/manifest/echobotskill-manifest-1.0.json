@@ -1,0 +1,124 @@
+{
+  "$schema": "https://schemas.botframework.com/schemas/skills/skill-manifest-2.1.preview-0.json",
+  "$id": "Integrate_Composer_Dialog_Using_Skill",
+  "name": "Integrate_Composer_Dialog_Using_Skill",
+  "description": "Integrate_Composer_Dialog_Using_Skill description",
+  "publisherName": "Your Company",
+  "version": "1.1",
+  "iconUrl": "http://localhost:3978/Integrate_Composer_Dialog_Using_Skill.png",
+  "copyright": "Copyright (c) Microsoft Corporation. All rights reserved.",
+  "license": "",
+  "privacyUrl": "http://localhost:3978/privacy.html",
+  "tags": [
+    "sample",
+    "skill"
+  ],
+  "endpoints": [
+    {
+      "name": "production",
+      "protocol": "BotFrameworkV3",
+      "description": "Production endpoint for the Integrate_Composer_Dialog_Using_Skill",
+      "endpointUrl": "http://localhost:3978/api/echo/messages",
+      "msAppId": "00000000-0000-0000-0000-000000000000"
+    }
+  ],
+  "dispatchModels": {
+    "languages": {
+      "en-us": [
+        {
+          "id": "Integrate_Composer_Dialog_Using_SkillLuModel-en",
+          "name": "Integrate_Composer_Dialog_Using_Skill LU (English)",
+          "contentType": "application/lu",
+          "url": "file://Integrate_Composer_Dialog_Using_Skill.lu",
+          "description": "English language model for the skill"
+        }
+      ],
+      "de-de": [
+        {
+          "id": "Integrate_Composer_Dialog_Using_SkillLuModel-de",
+          "name": "Integrate_Composer_Dialog_Using_Skill LU (German)",
+          "contentType": "application/lu",
+          "url": "file://Integrate_Composer_Dialog_Using_Skill.lu",
+          "description": "German language model for the skill"
+        }
+      ],
+      "es-es": [
+        {
+          "id": "Integrate_Composer_Dialog_Using_SkillLuModel-es",
+          "name": "Integrate_Composer_Dialog_Using_Skill LU (Spanish)",
+          "contentType": "application/lu",
+          "url": "file://Integrate_Composer_Dialog_Using_Skill.lu",
+          "description": "Spanish language model for the skill"
+        }
+      ],
+      "fr-fr": [
+        {
+          "id": "Integrate_Composer_Dialog_Using_SkillLuModel-fr",
+          "name": "Integrate_Composer_Dialog_Using_Skill LU (French)",
+          "contentType": "application/lu",
+          "url": "file://Integrate_Composer_Dialog_Using_Skill.lu",
+          "description": "French language model for the skill"
+        }
+      ],
+      "it-it": [
+        {
+          "id": "Integrate_Composer_Dialog_Using_SkillLuModel-it",
+          "name": "Integrate_Composer_Dialog_Using_Skill LU (Italian)",
+          "contentType": "application/lu",
+          "url": "file://Integrate_Composer_Dialog_Using_Skill.lu",
+          "description": "Italian language model for the skill"
+        }
+      ],
+      "zh-cn": [
+        {
+          "id": "Integrate_Composer_Dialog_Using_SkillLuModel-zh",
+          "name": "Integrate_Composer_Dialog_Using_Skill LU (Chinese)",
+          "contentType": "application/lu",
+          "url": "file://Integrate_Composer_Dialog_Using_Skill.lu",
+          "description": "Chinese language model for the skill"
+        }
+      ]
+    },
+    "intents": {
+      "Sample": "#/activities/message",
+      "*": "#/activities/message"
+    }
+  },
+  "activities": {
+    "sampleAction": {
+      "description": "Sample action which accepts an input object and returns an object back.",
+      "type": "event",
+      "name": "SampleAction",
+      "value": {
+        "$ref": "#/definitions/inputObject"
+      },
+      "resultValue": {
+        "$ref": "#/definitions/responseObject"
+      }
+    },
+    "message": {
+      "type": "message",
+      "description": "Receives the users utterance and attempts to resolve it using the skill's LU models"
+    }
+  },
+  "definitions": {
+    "inputObject": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The users name."
+        }
+      }
+    },
+    "responseObject": {
+      "type": "object",
+      "properties": {
+        "customerId": {
+          "type": "integer",
+          "description": "A customer identifier."
+        }
+      }
+    }
+  }
+}
